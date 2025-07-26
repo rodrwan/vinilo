@@ -1,0 +1,227 @@
+package templates
+
+import (
+	"fmt"
+	"github.com/rodrwan/vinilo/internal/models"
+)
+
+// RecordDetail muestra el detalle completo de un vinilo
+templ RecordDetail(record *models.Record) {
+	@Layout("Record Detail") {
+	<div class="min-h-screen relative">
+		<!-- Background Image with Glassmorphism Overlay -->
+		<div class="absolute inset-0 z-0">
+			<img
+				src={record.GetArtworkURL()}
+				alt={record.GetDisplayTitle()}
+				class="w-full h-full object-cover"
+			/>
+			<div class="absolute inset-0 bg-black/40 backdrop-blur-sm"></div>
+		</div>
+
+		<!-- Content with Glassmorphism -->
+		<div class="relative z-10 min-h-screen">
+			<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+				<!-- Back Button -->
+				<div class="mb-8">
+					<a href="/records" class="inline-flex items-center text-white hover:text-primary-red transition-colors backdrop-blur-md bg-white/10 px-4 py-2 rounded-full tracking-wide">
+						<svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+							<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18"/>
+						</svg>
+						Volver al catálogo
+					</a>
+				</div>
+
+				<!-- Main Content -->
+				<div class="grid lg:grid-cols-2 gap-12">
+					<!-- Left Column - Vinyl Record -->
+					<div class="flex justify-center lg:justify-start">
+						<div class="relative">
+							<div class="w-80 h-80 vinyl-card relative overflow-hidden backdrop-blur-md bg-white/20 border border-white/30">
+								<img
+									src={record.GetArtworkURL()}
+									alt={record.GetDisplayTitle()}
+									class="w-full h-full object-cover rounded-full"
+								/>
+								
+								<!-- Play button overlay -->
+								<div class="absolute inset-0 flex items-center justify-center opacity-0 hover:opacity-100 transition-opacity">
+									<button class="w-20 h-20 bg-gradient-to-br from-primary-red to-primary-orange rounded-full flex items-center justify-center shadow-lg hover:scale-110 transition-transform">
+										<svg class="w-8 h-8 text-white ml-1" fill="currentColor" viewBox="0 0 24 24">
+											<path d="M8 5v14l11-7z"/>
+										</svg>
+									</button>
+								</div>
+							</div>
+							
+							<!-- Price tag -->
+							<div class="absolute -top-4 -right-4 bg-gradient-to-r from-primary-red to-primary-orange text-white px-4 py-2 rounded-full shadow-lg backdrop-blur-md">
+								<span class="text-xl font-bold tracking-wide">$25</span>
+							</div>
+						</div>
+					</div>
+
+					<!-- Right Column - Details -->
+					<div class="space-y-8">
+						<!-- Title and Artist -->
+						<div class="backdrop-blur-md bg-white/10 p-8 rounded-2xl border border-white/20">
+							<h1 class="text-4xl md:text-5xl font-display font-bold text-white mb-4 tracking-tight">
+								{record.GetDisplayTitle()}
+							</h1>
+							<p class="text-2xl font-handwritten text-white/90 tracking-wide">
+								{record.GetDisplayArtist()}
+							</p>
+							if record.Anio.Valid {
+								<p class="text-lg text-white/70 mt-2 tracking-wide">
+									{fmt.Sprintf("%d", record.Anio.Int32)}
+								</p>
+							}
+						</div>
+
+						<!-- Basic Info Grid -->
+						<div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+							if record.Sello.Valid {
+								<div class="backdrop-blur-md bg-white/10 p-6 rounded-2xl border border-white/20">
+									<h3 class="text-sm font-medium text-white/70 uppercase tracking-wide mb-2">Sello</h3>
+									<p class="text-lg font-semibold text-white tracking-wide">{record.Sello.String}</p>
+								</div>
+							}
+
+							if record.CatalogNumber.Valid {
+								<div class="backdrop-blur-md bg-white/10 p-6 rounded-2xl border border-white/20">
+									<h3 class="text-sm font-medium text-white/70 uppercase tracking-wide mb-2">Catálogo</h3>
+									<p class="text-lg font-semibold text-white tracking-wide">{record.CatalogNumber.String}</p>
+								</div>
+							}
+
+							if record.Formato.Valid {
+								<div class="backdrop-blur-md bg-white/10 p-6 rounded-2xl border border-white/20">
+									<h3 class="text-sm font-medium text-white/70 uppercase tracking-wide mb-2">Formato</h3>
+									<p class="text-lg font-semibold text-white tracking-wide">{record.Formato.String}</p>
+								</div>
+							}
+
+							if record.Pais.Valid {
+								<div class="backdrop-blur-md bg-white/10 p-6 rounded-2xl border border-white/20">
+									<h3 class="text-sm font-medium text-white/70 uppercase tracking-wide mb-2">País</h3>
+									<p class="text-lg font-semibold text-white tracking-wide">{record.Pais.String}</p>
+								</div>
+							}
+
+							if record.Condicion.Valid {
+								<div class="backdrop-blur-md bg-white/10 p-6 rounded-2xl border border-white/20">
+									<h3 class="text-sm font-medium text-white/70 uppercase tracking-wide mb-2">Condición</h3>
+									<p class="text-lg font-semibold text-white tracking-wide">{record.Condicion.String}</p>
+								</div>
+							}
+
+							if record.DuracionTotal.Valid {
+								<div class="backdrop-blur-md bg-white/10 p-6 rounded-2xl border border-white/20">
+									<h3 class="text-sm font-medium text-white/70 uppercase tracking-wide mb-2">Duración</h3>
+									<p class="text-lg font-semibold text-white tracking-wide">{record.DuracionTotal.String}</p>
+								</div>
+							}
+						</div>
+
+						<!-- Genres and Styles -->
+						if len(record.GetGenerosAsSlice()) > 0 || len(record.GetEstilosAsSlice()) > 0 {
+							<div class="space-y-6">
+								if len(record.GetGenerosAsSlice()) > 0 {
+									<div class="backdrop-blur-md bg-white/10 p-6 rounded-2xl border border-white/20">
+										<h3 class="text-lg font-semibold text-white mb-3 tracking-wide">Géneros</h3>
+										<div class="flex flex-wrap gap-2">
+											for _, genero := range record.GetGenerosAsSlice() {
+												<span class="inline-flex items-center px-4 py-2 rounded-full text-sm font-medium bg-gradient-to-r from-primary-red to-primary-orange text-white backdrop-blur-md tracking-wide">
+													{genero}
+												</span>
+											}
+										</div>
+									</div>
+								}
+
+								if len(record.GetEstilosAsSlice()) > 0 {
+									<div class="backdrop-blur-md bg-white/10 p-6 rounded-2xl border border-white/20">
+										<h3 class="text-lg font-semibold text-white mb-3 tracking-wide">Estilos</h3>
+										<div class="flex flex-wrap gap-2">
+											for _, estilo := range record.GetEstilosAsSlice() {
+												<span class="inline-flex items-center px-4 py-2 rounded-full text-sm font-medium bg-white/20 text-white border border-white/30 backdrop-blur-md tracking-wide">
+													{estilo}
+												</span>
+											}
+										</div>
+									</div>
+								}
+							</div>
+						}
+
+						<!-- Notes -->
+						if record.Notas.Valid && record.Notas.String != "" {
+							<div class="backdrop-blur-md bg-white/10 p-6 rounded-2xl border border-white/20">
+								<h3 class="text-lg font-semibold text-white mb-3 tracking-wide">Notas</h3>
+								<p class="text-white/90 leading-relaxed tracking-wide">{record.Notas.String}</p>
+							</div>
+						}
+
+						<!-- Action Buttons -->
+						<div class="flex flex-col sm:flex-row gap-4 pt-6">
+							<button class="btn-primary text-lg px-8 py-4 inline-flex items-center justify-center group backdrop-blur-md tracking-wide">
+								<svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+									<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z"/>
+								</svg>
+								Agregar al carrito
+							</button>
+
+							<button class="px-8 py-4 bg-white/10 backdrop-blur-md border-2 border-white/30 rounded-full text-lg font-semibold text-white hover:bg-white/20 hover:border-white/50 transition-colors inline-flex items-center justify-center tracking-wide">
+								<svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+									<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8.684 13.342C8.886 12.938 9 12.482 9 12c0-.482-.114-.938-.316-1.342m0 2.684a3 3 0 110-2.684m0 2.684l6.632 3.316m-6.632-6l6.632-3.316m0 0a3 3 0 105.367-2.684 3 3 0 00-5.367 2.684zm0 9.316a3 3 0 105.367 2.684 3 3 0 00-5.367-2.684z"/>
+								</svg>
+								Compartir
+							</button>
+						</div>
+					</div>
+				</div>
+
+				<!-- Tracklist -->
+				if len(record.GetTracklistAsSlice()) > 0 {
+					<div class="mt-16">
+						<h2 class="text-3xl font-display font-bold text-white mb-8 text-center tracking-tight">Tracklist</h2>
+						<div class="backdrop-blur-md bg-white/10 rounded-2xl border border-white/20 overflow-hidden">
+							<div class="p-8">
+								<div class="space-y-4">
+									for _, track := range record.GetTracklistAsSlice() {
+										<div class="flex items-center justify-between py-4 border-b border-white/20 last:border-b-0">
+											<div class="flex items-center space-x-6">
+												<span class="text-primary-red text-lg font-bold w-8 tracking-wide">
+													{fmt.Sprintf("%d", track.Numero)}
+												</span>
+												<span class="text-white font-medium text-lg tracking-wide">
+													{track.Titulo}
+												</span>
+											</div>
+											if track.Duracion != "" {
+												<span class="text-white/70 text-sm font-medium tracking-wide">
+													{track.Duracion}
+												</span>
+											}
+										</div>
+									}
+								</div>
+							</div>
+						</div>
+					</div>
+				}
+
+				<!-- Timestamps -->
+				<div class="mt-12 text-center text-white/60 text-sm">
+					<div class="flex justify-center space-x-8">
+						<span class="tracking-wide">Agregado: {record.CreatedAt.Format("02/01/2006")}</span>
+						if !record.UpdatedAt.Equal(record.CreatedAt) {
+							<span class="tracking-wide">Actualizado: {record.UpdatedAt.Format("02/01/2006")}</span>
+						}
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	}
+}

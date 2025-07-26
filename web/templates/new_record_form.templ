@@ -1,0 +1,349 @@
+package templates
+
+// NewRecordForm renderiza el formulario para crear un nuevo record
+templ NewRecordForm() {
+	@Layout("Nuevo Record - Vinilo") {
+		<div class="container mx-auto px-4 py-8">
+			<div class="max-w-4xl mx-auto bg-white rounded-lg shadow-md p-6">
+				<h1 class="text-3xl font-bold text-gray-900 mb-6">Nuevo Record</h1>
+
+				<form action="/admin/records" method="POST" class="space-y-8">
+					<!-- Información Básica -->
+					<div class="bg-gray-50 p-6 rounded-lg">
+						<h2 class="text-xl font-semibold text-gray-800 mb-4">Información Básica</h2>
+						<div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+							<div>
+								<label for="titulo" class="block text-sm font-medium text-gray-700 mb-2">
+									Título *
+								</label>
+								<input
+									type="text"
+									id="titulo"
+									name="titulo"
+									required
+									class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+									placeholder="Ingresa el título del álbum"
+								/>
+							</div>
+
+							<div>
+								<label for="artista" class="block text-sm font-medium text-gray-700 mb-2">
+									Artista *
+								</label>
+								<input
+									type="text"
+									id="artista"
+									name="artista"
+									required
+									class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+									placeholder="Ingresa el nombre del artista"
+								/>
+							</div>
+
+							<div>
+								<label for="anio" class="block text-sm font-medium text-gray-700 mb-2">
+									Año
+								</label>
+								<input
+									type="number"
+									id="anio"
+									name="anio"
+									min="1900"
+									max="2030"
+									class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+									placeholder="Ej: 1991"
+								/>
+							</div>
+
+							<div>
+								<label for="pais" class="block text-sm font-medium text-gray-700 mb-2">
+									País
+								</label>
+								<input
+									type="text"
+									id="pais"
+									name="pais"
+									class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+									placeholder="Ej: Estados Unidos"
+								/>
+							</div>
+						</div>
+					</div>
+
+					<!-- Información del Sello -->
+					<div class="bg-gray-50 p-6 rounded-lg">
+						<h2 class="text-xl font-semibold text-gray-800 mb-4">Información del Sello</h2>
+						<div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+							<div>
+								<label for="sello" class="block text-sm font-medium text-gray-700 mb-2">
+									Sello Discográfico
+								</label>
+								<input
+									type="text"
+									id="sello"
+									name="sello"
+									class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+									placeholder="Ej: Warner Bros. Records"
+								/>
+							</div>
+
+							<div>
+								<label for="catalog_number" class="block text-sm font-medium text-gray-700 mb-2">
+									Número de Catálogo
+								</label>
+								<input
+									type="text"
+									id="catalog_number"
+									name="catalog_number"
+									class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+									placeholder="Ej: WB-12345"
+								/>
+							</div>
+						</div>
+					</div>
+
+					<!-- Clasificación Musical -->
+					<div class="bg-gray-50 p-6 rounded-lg">
+						<h2 class="text-xl font-semibold text-gray-800 mb-4">Clasificación Musical</h2>
+						<div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+							<div>
+								<label for="generos" class="block text-sm font-medium text-gray-700 mb-2">
+									Géneros
+								</label>
+								<input
+									type="text"
+									id="generos"
+									name="generos"
+									class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+									placeholder="Ej: Rock, Alternative, Grunge"
+								/>
+								<p class="text-xs text-gray-500 mt-1">Separa múltiples géneros con comas</p>
+							</div>
+
+							<div>
+								<label for="estilos" class="block text-sm font-medium text-gray-700 mb-2">
+									Estilos
+								</label>
+								<input
+									type="text"
+									id="estilos"
+									name="estilos"
+									class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+									placeholder="Ej: Alternative Rock, Post-Grunge"
+								/>
+								<p class="text-xs text-gray-500 mt-1">Separa múltiples estilos con comas</p>
+							</div>
+						</div>
+					</div>
+
+					<!-- Información Física -->
+					<div class="bg-gray-50 p-6 rounded-lg">
+						<h2 class="text-xl font-semibold text-gray-800 mb-4">Información Física</h2>
+						<div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+							<div>
+								<label for="formato" class="block text-sm font-medium text-gray-700 mb-2">
+									Formato
+								</label>
+								<select
+									id="formato"
+									name="formato"
+									class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+								>
+									<option value="">Selecciona un formato</option>
+									<option value="LP">LP (12")</option>
+									<option value="EP">EP (7")</option>
+									<option value="Single">Single</option>
+									<option value="CD">CD</option>
+									<option value="Cassette">Cassette</option>
+									<option value="Digital">Digital</option>
+								</select>
+							</div>
+
+							<div>
+								<label for="condicion" class="block text-sm font-medium text-gray-700 mb-2">
+									Condición
+								</label>
+								<select
+									id="condicion"
+									name="condicion"
+									class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+								>
+									<option value="">Selecciona la condición</option>
+									<option value="Mint">Mint (M)</option>
+									<option value="Near Mint">Near Mint (NM)</option>
+									<option value="Very Good Plus">Very Good Plus (VG+)</option>
+									<option value="Very Good">Very Good (VG)</option>
+									<option value="Good Plus">Good Plus (G+)</option>
+									<option value="Good">Good (G)</option>
+									<option value="Fair">Fair (F)</option>
+									<option value="Poor">Poor (P)</option>
+								</select>
+							</div>
+
+							<div>
+								<label for="duracion_total" class="block text-sm font-medium text-gray-700 mb-2">
+									Duración Total
+								</label>
+								<input
+									type="text"
+									id="duracion_total"
+									name="duracion_total"
+									class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+									placeholder="Ej: 45:30"
+								/>
+							</div>
+
+							<div>
+								<label for="arte_url" class="block text-sm font-medium text-gray-700 mb-2">
+									URL del Arte
+								</label>
+								<input
+									type="url"
+									id="arte_url"
+									name="arte_url"
+									class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+									placeholder="https://ejemplo.com/arte.jpg"
+								/>
+							</div>
+						</div>
+					</div>
+
+					<!-- Tracklist -->
+					<div class="bg-gray-50 p-6 rounded-lg">
+						<h2 class="text-xl font-semibold text-gray-800 mb-4">Tracklist</h2>
+						<div id="tracklist-container" class="space-y-3">
+							<div class="track-item grid grid-cols-12 gap-2 items-center">
+								<div class="col-span-1">
+									<input
+										type="number"
+										name="tracklist[0][numero]"
+										min="1"
+										class="w-full px-2 py-1 border border-gray-300 rounded text-center"
+										placeholder="#"
+									/>
+								</div>
+								<div class="col-span-7">
+									<input
+										type="text"
+										name="tracklist[0][titulo]"
+										class="w-full px-2 py-1 border border-gray-300 rounded"
+										placeholder="Título de la canción"
+									/>
+								</div>
+								<div class="col-span-3">
+									<input
+										type="text"
+										name="tracklist[0][duracion]"
+										class="w-full px-2 py-1 border border-gray-300 rounded"
+										placeholder="3:45"
+									/>
+								</div>
+								<div class="col-span-1">
+									<button
+										type="button"
+										class="remove-track text-red-500 hover:text-red-700 px-2 py-1"
+										onclick="removeTrack(this)"
+									>
+										×
+									</button>
+								</div>
+							</div>
+						</div>
+						<button
+							type="button"
+							class="mt-3 text-blue-600 hover:text-blue-800 text-sm font-medium"
+							onclick="addTrack()"
+						>
+							+ Agregar canción
+						</button>
+					</div>
+
+					<!-- Notas -->
+					<div class="bg-gray-50 p-6 rounded-lg">
+						<h2 class="text-xl font-semibold text-gray-800 mb-4">Notas Adicionales</h2>
+						<div>
+							<label for="notas" class="block text-sm font-medium text-gray-700 mb-2">
+								Notas
+							</label>
+							<textarea
+								id="notas"
+								name="notas"
+								rows="4"
+								class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+								placeholder="Información adicional, comentarios, etc."
+							></textarea>
+						</div>
+					</div>
+
+					<!-- Botones de Acción -->
+					<div class="flex gap-4 pt-4">
+						<button
+							type="submit"
+							class="bg-blue-600 text-white px-6 py-2 rounded-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500"
+						>
+							Crear Record
+						</button>
+						<a
+							href="/admin/records"
+							class="bg-gray-300 text-gray-700 px-6 py-2 rounded-md hover:bg-gray-400 focus:outline-none focus:ring-2 focus:ring-gray-500"
+						>
+							Cancelar
+						</a>
+					</div>
+				</form>
+			</div>
+		</div>
+
+		<script>
+			let trackCount = 1;
+
+			function addTrack() {
+				const container = document.getElementById('tracklist-container');
+				const newTrack = document.createElement('div');
+				newTrack.className = 'track-item grid grid-cols-12 gap-2 items-center';
+				newTrack.innerHTML = `
+					<div class="col-span-1">
+						<input
+							type="number"
+							name="tracklist[${trackCount}][numero]"
+							min="1"
+							class="w-full px-2 py-1 border border-gray-300 rounded text-center"
+							placeholder="#"
+						/>
+					</div>
+					<div class="col-span-7">
+						<input
+							type="text"
+							name="tracklist[${trackCount}][titulo]"
+							class="w-full px-2 py-1 border border-gray-300 rounded"
+							placeholder="Título de la canción"
+						/>
+					</div>
+					<div class="col-span-3">
+						<input
+							type="text"
+							name="tracklist[${trackCount}][duracion]"
+							class="w-full px-2 py-1 border border-gray-300 rounded"
+							placeholder="3:45"
+						/>
+					</div>
+					<div class="col-span-1">
+						<button
+							type="button"
+							class="remove-track text-red-500 hover:text-red-700 px-2 py-1"
+							onclick="removeTrack(this)"
+						>
+							×
+						</button>
+					</div>
+				`;
+				container.appendChild(newTrack);
+				trackCount++;
+			}
+
+			function removeTrack(button) {
+				button.closest('.track-item').remove();
+			}
+		</script>
+	}
+}

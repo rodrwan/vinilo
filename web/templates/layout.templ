@@ -1,0 +1,241 @@
+package templates
+
+// Layout base para todas las páginas
+templ Layout(title string) {
+	<!DOCTYPE html>
+	<html lang="es" class="h-full">
+		<head>
+			<meta charset="UTF-8"/>
+			<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+			<title>{title} - Vinilo Collection</title>
+
+			<!-- Meta tags para SEO -->
+			<meta name="description" content="Colección personal de vinilos - Descubre música clásica y contemporánea"/>
+			<meta name="keywords" content="vinilos, música, colección, discos, LP, vinyl"/>
+			<meta name="author" content="Vinilo Collection"/>
+
+			<!-- Open Graph -->
+			<meta property="og:title" content={title + " - Vinilo Collection"}/>
+			<meta property="og:description" content="Colección personal de vinilos - Descubre música clásica y contemporánea"/>
+			<meta property="og:type" content="website"/>
+			<meta property="og:url" content="https://vinilo.local"/>
+
+			<!-- Favicon -->
+			<link rel="icon" type="image/svg+xml" href="/static/images/favicon.svg"/>
+
+			<!-- Google Fonts -->
+			<link rel="preconnect" href="https://fonts.googleapis.com"/>
+			<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin=""/>
+			<link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@300..700&family=Plus+Jakarta+Sans:ital,wght@0,200..800;1,200..800" rel="stylesheet"/>
+
+			<!-- Tailwind CSS CDN -->
+			 <script src="https://cdn.tailwindcss.com"></script>
+
+			<!-- Tailwind Config -->
+			<script>
+				tailwind.config = {
+					theme: {
+						extend: {
+							colors: {
+								'primary-red': 'rgba(230, 57, 70, 0.6)',
+								'primary-orange': 'rgba(255, 107, 53, 0.6)',
+								'primary-yellow': 'rgba(255, 215, 0, 0.6)',
+								'accent-orange': 'rgba(255, 140, 66, 0.6)',
+								'red': {
+									500: 'rgba(230, 57, 70, 0.6)',
+								},
+								'orange': {
+									500: 'rgba(255, 107, 53, 0.6)',
+								},
+								'yellow': {
+									500: 'rgba(255, 215, 0, 0.6)',
+								},
+								'dark-gray': '#2d3748',
+								'light-bg': '#fafafa',
+							},
+						},
+					},
+				};
+			</script>
+
+			<style>
+				:root {
+					--primary-orange: rgba(255, 107, 53, 0.6);
+					--primary-red: rgba(230, 57, 70, 0.6);
+					--accent-orange: rgba(255, 140, 66, 0.6);
+					--dark-gray: #2d3748;
+					--light-bg: #fafafa;
+					--primary-yellow: rgba(255, 215, 0, 0.6);
+				}
+
+				/* Fira Code as main font */
+				body {
+					font-family: 'Fira Code', monospace;
+				}
+
+				.font-display {
+					font-family: 'Fira Code', monospace;
+					font-weight: 600;
+				}
+
+				.font-handwritten {
+					font-family: 'Fira Code', monospace;
+					font-style: italic;
+					font-weight: 400;
+				}
+
+				.gradient-text {
+					background: linear-gradient(135deg, var(--primary-red), var(--primary-orange));
+					-webkit-background-clip: text;
+					-webkit-text-fill-color: transparent;
+					background-clip: text;
+				}
+
+				.outlined-text {
+					-webkit-text-stroke: 2px var(--dark-gray);
+					color: transparent;
+				}
+
+				.vinyl-card {
+					background: linear-gradient(135deg, #fff, #f8f9fa);
+					border-radius: 50%;
+					box-shadow: 0 8px 32px rgba(0,0,0,0.1);
+					transition: all 0.3s ease;
+				}
+
+				.vinyl-card:hover {
+					transform: translateY(-5px);
+					box-shadow: 0 12px 40px rgba(0,0,0,0.15);
+				}
+
+				.btn-primary {
+					background: linear-gradient(135deg, var(--primary-red), var(--primary-orange));
+					color: white;
+					border-radius: 50px;
+					padding: 12px 32px;
+					font-weight: 600;
+					transition: all 0.3s ease;
+					box-shadow: 0 4px 15px rgba(230, 57, 70, 0.3);
+					font-family: 'Fira Code', monospace;
+				}
+
+				.btn-primary:hover {
+					transform: translateY(-2px);
+					box-shadow: 0 6px 20px rgba(230, 57, 70, 0.4);
+				}
+
+				/* Glassmorphism effects */
+				.glass-header {
+					backdrop-filter: blur(16px);
+					-webkit-backdrop-filter: blur(16px);
+					background: var(--primary-red);
+					border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+					box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+				}
+
+				.glass-footer {
+					backdrop-filter: blur(16px);
+					-webkit-backdrop-filter: blur(16px);
+					background: rgba(0, 0, 0, 0.6);
+					border-top: 1px solid rgba(255, 255, 255, 0.1);
+				}
+
+				/* Animation keyframes */
+				@keyframes float {
+					0%, 100% { transform: translateY(0px); }
+					50% { transform: translateY(-10px); }
+				}
+
+				.animate-float {
+					animation: float 3s ease-in-out infinite;
+				}
+
+				/* Typography improvements for Fira Code */
+				h1, h2, h3, h4, h5, h6 {
+					font-family: 'Fira Code', monospace;
+					font-weight: 600;
+				}
+
+				p, span, div, a, button {
+					font-family: 'Fira Code', monospace;
+				}
+
+				/* Better letter spacing for monospace font */
+				.font-display {
+					letter-spacing: -0.02em;
+				}
+
+				.font-handwritten {
+					letter-spacing: 0.01em;
+				}
+			</style>
+		</head>
+		<body class="h-full font-mono">
+			<!-- Header with Glassmorphism -->
+			<header class="glass-header sticky top-0 z-50">
+				<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+					<div class="flex justify-between items-center h-16">
+						<!-- Logo -->
+						<div class="flex items-center">
+							<a href="/" class="flex items-center space-x-3 group">
+								<div class="w-10 h-10 bg-gradient-to-br from-red-500 to-orange-500 rounded-full flex items-center justify-center group-hover:scale-110 transition-transform">
+									<span class="text-white font-bold text-lg">VA</span>
+								</div>
+								<span class="text-xl font-display font-semibold text-white">
+									Vinilo
+								</span>
+							</a>
+						</div>
+
+						<!-- Navigation -->
+						<nav class="hidden md:flex space-x-8">
+							<a href="/" class="text-white/90 hover:text-white px-3 py-2 text-sm font-medium transition-colors rounded-lg hover:bg-white/10">
+								Inicio
+							</a>
+							<a href="/records" class="text-white/90 hover:text-white px-3 py-2 text-sm font-medium transition-colors rounded-lg hover:bg-white/10">
+								Catálogo
+							</a>
+						</nav>
+
+						<!-- Right side icons -->
+						<div class="flex items-center space-x-4">
+							<!-- Notification bell -->
+							<button class="relative p-2 text-white/90 hover:text-white transition-colors rounded-lg hover:bg-white/10">
+								<svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+									<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 17h5l-5 5v-5zM9 7h6m0 10v-3m-3 3h.01M9 17h.01M9 14h.01M12 14h.01M15 11h.01M12 11h.01M9 11h.01M7 21h10a2 2 0 002-2V5a2 2 0 00-2-2H7a2 2 0 00-2 2v14a2 2 0 002 2z"/>
+								</svg>
+								<span class="absolute -top-1 -right-1 bg-red-500 text-white text-xs rounded-full w-5 h-5 flex items-center justify-center">3</span>
+							</button>
+
+							<!-- Search icon -->
+							<button class="p-2 text-white/90 hover:text-white transition-colors rounded-lg hover:bg-white/10">
+								<svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+									<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/>
+								</svg>
+							</button>
+
+							<!-- User profile -->
+							<div class="w-8 h-8 bg-gradient-to-br from-gray-400 to-gray-600 rounded-full flex items-center justify-center border border-white/20">
+								<span class="text-white text-sm font-medium">U</span>
+							</div>
+						</div>
+					</div>
+				</div>
+			</header>
+
+			<!-- Main Content -->
+			<main class="flex-1">
+				{children...}
+			</main>
+
+			<!-- Footer with Glassmorphism -->
+			<footer class="mt-auto">
+				<div class="max-w-7xl mx-auto py-8 px-4 sm:px-6 lg:px-8">
+					<div class="text-center text-black text-sm">
+						<p>&copy; 2025 Vinilo Collection. Hecho con ❤️ y Go.</p>
+					</div>
+				</div>
+			</footer>
+		</body>
+	</html>
+}

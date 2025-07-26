@@ -1,0 +1,177 @@
+package templates
+
+import (
+	"fmt"
+	"github.com/rodrwan/vinilo/internal/models"
+)
+
+// AdminDashboard renderiza el dashboard administrativo
+templ AdminDashboard(totalRecords int, recentRecords []*models.Record) {
+	@Layout("Dashboard - Admin Vinilo") {
+		<div class="min-h-screen bg-gray-50">
+			<!-- Header -->
+			<div class="bg-white shadow-sm border-b">
+				<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+					<div class="flex justify-between items-center py-6">
+						<h1 class="text-3xl font-bold text-gray-900">Dashboard Administrativo</h1>
+						<div class="flex space-x-4">
+							<a href="/admin/records/new" class="bg-blue-600 text-white px-4 py-2 rounded-md hover:bg-blue-700 transition-colors">
+								+ Nuevo Record
+							</a>
+							<a href="/admin/records" class="bg-gray-600 text-white px-4 py-2 rounded-md hover:bg-gray-700 transition-colors">
+								Ver Todos
+							</a>
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<!-- Main Content -->
+			<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+				<!-- Stats Cards -->
+				<div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
+					<!-- Total Records -->
+					<div class="bg-white rounded-lg shadow p-6">
+						<div class="flex items-center">
+							<div class="flex-shrink-0">
+								<svg class="h-8 w-8 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+									<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19V6l12-3v13M9 19c0 1.105-1.343 2-3 2s-3-.895-3-2 1.343-2 3-2 3 .895 3 2zm12-3c0 1.105-1.343 2-3 2s-3-.895-3-2 1.343-2 3-2 3 .895 3 2zM9 10l12-3"/>
+								</svg>
+							</div>
+							<div class="ml-4">
+								<p class="text-sm font-medium text-gray-500">Total de Records</p>
+								<p class="text-2xl font-bold text-gray-900">{fmt.Sprint(totalRecords)}</p>
+							</div>
+						</div>
+					</div>
+
+					<!-- Recent Activity -->
+					<div class="bg-white rounded-lg shadow p-6">
+						<div class="flex items-center">
+							<div class="flex-shrink-0">
+								<svg class="h-8 w-8 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+									<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/>
+								</svg>
+							</div>
+							<div class="ml-4">
+								<p class="text-sm font-medium text-gray-500">Actividad Reciente</p>
+								<p class="text-2xl font-bold text-gray-900">{fmt.Sprint(len(recentRecords))}</p>
+								<p class="text-sm text-gray-500">últimos registros</p>
+							</div>
+						</div>
+					</div>
+
+					<!-- Quick Actions -->
+					<div class="bg-white rounded-lg shadow p-6">
+						<div class="flex items-center">
+							<div class="flex-shrink-0">
+								<svg class="h-8 w-8 text-purple-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+									<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6"/>
+								</svg>
+							</div>
+							<div class="ml-4">
+								<p class="text-sm font-medium text-gray-500">Acciones Rápidas</p>
+								<p class="text-lg font-bold text-gray-900">Gestionar</p>
+								<p class="text-sm text-gray-500">records</p>
+							</div>
+						</div>
+					</div>
+				</div>
+
+				<!-- Recent Records -->
+				<div class="bg-white rounded-lg shadow">
+					<div class="px-6 py-4 border-b border-gray-200">
+						<div class="flex justify-between items-center">
+							<h2 class="text-xl font-semibold text-gray-900">Últimos Records Registrados</h2>
+							<a href="/admin/records" class="text-blue-600 hover:text-blue-800 text-sm font-medium">
+								Ver todos →
+							</a>
+						</div>
+					</div>
+					
+					if len(recentRecords) == 0 {
+						<div class="px-6 py-8 text-center">
+							<svg class="mx-auto h-12 w-12 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+								<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19V6l12-3v13M9 19c0 1.105-1.343 2-3 2s-3-.895-3-2 1.343-2 3-2 3 .895 3 2zm12-3c0 1.105-1.343 2-3 2s-3-.895-3-2 1.343-2 3-2 3 .895 3 2zM9 10l12-3"/>
+							</svg>
+							<h3 class="mt-2 text-sm font-medium text-gray-900">No hay records</h3>
+							<p class="mt-1 text-sm text-gray-500">Comienza agregando tu primer record.</p>
+							<div class="mt-6">
+								<a href="/admin/records/new" class="inline-flex items-center px-4 py-2 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-blue-600 hover:bg-blue-700">
+									+ Agregar Record
+								</a>
+							</div>
+						</div>
+					} else {
+						<div class="overflow-hidden">
+							<ul class="divide-y divide-gray-200">
+								for _, record := range recentRecords {
+									<li class="px-6 py-4 hover:bg-gray-50">
+										<div class="flex items-center justify-between">
+											<div class="flex items-center">
+												<div class="flex-shrink-0 h-10 w-10">
+													<div class="h-10 w-10 rounded-full bg-gradient-to-br from-blue-500 to-purple-600 flex items-center justify-center">
+														<svg class="h-6 w-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+															<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19V6l12-3v13M9 19c0 1.105-1.343 2-3 2s-3-.895-3-2 1.343-2 3-2 3 .895 3 2zm12-3c0 1.105-1.343 2-3 2s-3-.895-3-2 1.343-2 3-2 3 .895 3 2zM9 10l12-3"/>
+														</svg>
+													</div>
+												</div>
+												<div class="ml-4">
+													<div class="text-sm font-medium text-gray-900">{record.GetDisplayTitle()}</div>
+													<div class="text-sm text-gray-500">{record.GetDisplayArtist()}</div>
+													if record.Anio.Valid {
+														<div class="text-xs text-gray-400">{fmt.Sprint(record.Anio.Int32)}</div>
+													}
+												</div>
+											</div>
+											<div class="flex items-center space-x-2">
+												<a href={templ.SafeURL("/admin/records/" + record.ID)} class="text-blue-600 hover:text-blue-800 text-sm font-medium">
+													Ver detalles
+												</a>
+											</div>
+										</div>
+									</li>
+								}
+							</ul>
+						</div>
+					}
+				</div>
+
+				<!-- Quick Actions Section -->
+				<div class="mt-8 grid grid-cols-1 md:grid-cols-2 gap-6">
+					<div class="bg-white rounded-lg shadow p-6">
+						<h3 class="text-lg font-medium text-gray-900 mb-4">Acciones Rápidas</h3>
+						<div class="space-y-3">
+							<a href="/admin/records/new" class="flex items-center p-3 rounded-md border border-gray-200 hover:bg-gray-50 transition-colors">
+								<svg class="h-5 w-5 text-blue-600 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+									<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6"/>
+								</svg>
+								<span class="text-sm font-medium text-gray-900">Agregar Nuevo Record</span>
+							</a>
+							<a href="/admin/records" class="flex items-center p-3 rounded-md border border-gray-200 hover:bg-gray-50 transition-colors">
+								<svg class="h-5 w-5 text-green-600 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+									<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v10a2 2 0 002 2h8a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2"/>
+								</svg>
+								<span class="text-sm font-medium text-gray-900">Ver Todos los Records</span>
+							</a>
+						</div>
+					</div>
+
+					<div class="bg-white rounded-lg shadow p-6">
+						<h3 class="text-lg font-medium text-gray-900 mb-4">Estadísticas</h3>
+						<div class="space-y-3">
+							<div class="flex justify-between items-center">
+								<span class="text-sm text-gray-600">Total de Records</span>
+								<span class="text-sm font-medium text-gray-900">{fmt.Sprint(totalRecords)}</span>
+							</div>
+							<div class="flex justify-between items-center">
+								<span class="text-sm text-gray-600">Records Recientes</span>
+								<span class="text-sm font-medium text-gray-900">{fmt.Sprint(len(recentRecords))}</span>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	}
+} 
