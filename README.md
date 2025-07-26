@@ -41,9 +41,6 @@ cd vinilo
 # Dependencias de Go
 go mod tidy
 
-# Dependencias de Node.js
-npm install
-
 # Herramientas de desarrollo
 make install-deps
 ```
@@ -58,11 +55,11 @@ make migrate
 make seed
 ```
 
-### 4. Compilar CSS
+### 4. Generar templates
 
 ```bash
-# Compilar Tailwind CSS
-npm run build:css
+# Generar templates templ
+make generate-templates
 ```
 
 ### 5. Generar templates
@@ -99,10 +96,7 @@ make clean
 # Terminal 1: Servidor Go
 make dev
 
-# Terminal 2: Tailwind CSS en watch
-npm run watch:css
-
-# Terminal 3: Templates templ en watch
+# Terminal 2: Templates templ en watch
 templ generate --watch
 ```
 
@@ -120,40 +114,34 @@ vinilo/
 │   └── repository/      # Capa de acceso a datos
 ├── migrations/          # Migraciones SQL
 ├── web/
-│   ├── input.css        # CSS de entrada para Tailwind
 │   ├── static/          # Archivos estáticos
 │   └── templates/       # Templates templ
 ├── data/                # Base de datos SQLite
-├── Makefile             # Comandos de desarrollo
-├── tailwind.config.js   # Configuración de Tailwind
-└── package.json         # Dependencias de Node.js
+└── Makefile             # Comandos de desarrollo
 ```
 
 ## 🎨 Personalización
 
 ### Colores y temas
 
-Los colores personalizados están definidos en `tailwind.config.js`:
+Los colores personalizados están definidos directamente en los templates usando clases de Tailwind CSS desde CDN:
 
-```javascript
-colors: {
-  vinyl: {
-    50: '#fef7f0',
-    500: '#f2751f',
-    600: '#e35d15',
-    // ...
-  }
-}
+```html
+<!-- Ejemplo de uso de colores personalizados -->
+<div class="bg-vinyl-500 text-white">
+  <!-- Contenido -->
+</div>
 ```
 
 ### Glassmorphism
 
-Los efectos glassmorphism están definidos en `web/input.css`:
+Los efectos glassmorphism están definidos directamente en los templates usando clases de Tailwind CSS:
 
-```css
-.glass-panel {
-  @apply backdrop-blur-md bg-white/10 border border-white/20 rounded-xl shadow-xl;
-}
+```html
+<!-- Ejemplo de panel con efecto glassmorphism -->
+<div class="backdrop-blur-md bg-white/10 border border-white/20 rounded-xl shadow-xl">
+  <!-- Contenido -->
+</div>
 ```
 
 ## 📊 Modelo de Datos
@@ -245,23 +233,9 @@ INSERT INTO records (
 go install github.com/a-h/templ/cmd/templ@latest
 ```
 
-### Error: "tailwindcss: command not found"
-```bash
-npm install -g tailwindcss
-```
-
 ### Error: "goose: command not found"
 ```bash
 go install github.com/pressly/goose/v3/cmd/goose@latest
-```
-
-### CSS no se actualiza
-```bash
-# Regenerar CSS
-npm run build:css
-
-# O en modo watch
-npm run watch:css
 ```
 
 ### Templates no se regeneran
