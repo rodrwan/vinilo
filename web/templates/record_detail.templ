@@ -16,7 +16,7 @@ templ RecordDetail(record *models.Record) {
 				alt={record.GetDisplayTitle()}
 				class="w-full h-full object-cover"
 			/>
-			<div class="absolute inset-0 bg-black/40 backdrop-blur-sm"></div>
+			<div class="absolute inset-0 bg-black/60 backdrop-blur-sm"></div>
 		</div>
 
 		<!-- Content with Glassmorphism -->
@@ -32,39 +32,39 @@ templ RecordDetail(record *models.Record) {
 					</a>
 				</div>
 
-				<!-- Main Content -->
-				<div class="grid lg:grid-cols-2 gap-12">
-					<!-- Left Column - Vinyl Record -->
-					<div class="flex justify-center lg:justify-start">
-						<div class="relative">
-							<div class="w-80 h-80 vinyl-card relative overflow-hidden backdrop-blur-md bg-white/20 border border-white/30">
-								<img
-									src={record.GetArtworkURL()}
-									alt={record.GetDisplayTitle()}
-									class="w-full h-full object-cover rounded-full"
-								/>
-								
-								<!-- Play button overlay -->
-								<div class="absolute inset-0 flex items-center justify-center opacity-0 hover:opacity-100 transition-opacity">
-									<button class="w-20 h-20 bg-gradient-to-br from-primary-red to-primary-orange rounded-full flex items-center justify-center shadow-lg hover:scale-110 transition-transform">
-										<svg class="w-8 h-8 text-white ml-1" fill="currentColor" viewBox="0 0 24 24">
-											<path d="M8 5v14l11-7z"/>
-										</svg>
-									</button>
+				<!-- Main Content Container -->
+				<div class="flex flex-col gap-8 lg:gap-12 justify-between">
+					<!-- First Row -->
+					<div class="flex flex-col lg:flex-row gap-16">
+						<!-- Vinyl Record -->
+						<div class="flex justify-center lg:justify-start w-full lg:w-1/3">
+							<div class="relative w-full">
+								<div class="w-80 h-80 vinyl-card relative overflow-hidden backdrop-blur-md bg-white/20 border border-white/30 mx-auto">
+									<img
+										src={record.GetArtworkURL()}
+										alt={record.GetDisplayTitle()}
+										class="w-full h-full object-cover rounded-full"
+									/>
+
+									<!-- Play button overlay -->
+									<div class="absolute inset-0 flex items-center justify-center opacity-0 hover:opacity-100 transition-opacity">
+										<button class="w-20 h-20 bg-gradient-to-br from-primary-red to-primary-orange rounded-full flex items-center justify-center shadow-lg hover:scale-110 transition-transform">
+											<svg class="w-8 h-8 text-white ml-1" fill="currentColor" viewBox="0 0 24 24">
+												<path d="M8 5v14l11-7z"/>
+											</svg>
+										</button>
+									</div>
+								</div>
+
+								<!-- Price tag -->
+								<div class="absolute -top-4 -right-4 bg-gradient-to-r from-primary-red to-primary-orange text-white px-4 py-2 rounded-full shadow-lg backdrop-blur-md">
+									<span class="text-xl font-bold tracking-wide">$25</span>
 								</div>
 							</div>
-							
-							<!-- Price tag -->
-							<div class="absolute -top-4 -right-4 bg-gradient-to-r from-primary-red to-primary-orange text-white px-4 py-2 rounded-full shadow-lg backdrop-blur-md">
-								<span class="text-xl font-bold tracking-wide">$25</span>
-							</div>
 						</div>
-					</div>
 
-					<!-- Right Column - Details -->
-					<div class="space-y-8">
 						<!-- Title and Artist -->
-						<div class="backdrop-blur-md bg-white/10 p-8 rounded-2xl border border-white/20">
+						<div class="backdrop-blur-md bg-white/10 p-8 rounded-2xl border border-white/20 w-full lg:w-2/3 h-full">
 							<h1 class="text-4xl md:text-5xl font-display font-bold text-white mb-4 tracking-tight">
 								{record.GetDisplayTitle()}
 							</h1>
@@ -77,9 +77,12 @@ templ RecordDetail(record *models.Record) {
 								</p>
 							}
 						</div>
+					</div>
 
+					<!-- Second Row -->
+					<div class="flex flex-col lg:flex-row gap-16">
 						<!-- Basic Info Grid -->
-						<div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+						<div class="grid grid-cols-1 sm:grid-cols-2 gap-6 w-full lg:w-1/2">
 							if record.Sello.Valid {
 								<div class="backdrop-blur-md bg-white/10 p-6 rounded-2xl border border-white/20">
 									<h3 class="text-sm font-medium text-white/70 uppercase tracking-wide mb-2">Sello</h3>
@@ -125,7 +128,7 @@ templ RecordDetail(record *models.Record) {
 
 						<!-- Genres and Styles -->
 						if len(record.GetGenerosAsSlice()) > 0 || len(record.GetEstilosAsSlice()) > 0 {
-							<div class="space-y-6">
+							<div class="space-y-6 w-full lg:w-1/2">
 								if len(record.GetGenerosAsSlice()) > 0 {
 									<div class="backdrop-blur-md bg-white/10 p-6 rounded-2xl border border-white/20">
 										<h3 class="text-lg font-semibold text-white mb-3 tracking-wide">Géneros</h3>
@@ -153,17 +156,20 @@ templ RecordDetail(record *models.Record) {
 								}
 							</div>
 						}
+					</div>
 
+					<!-- Third Row -->
+					<div class="flex flex-col lg:flex-row gap-16">
 						<!-- Notes -->
 						if record.Notas.Valid && record.Notas.String != "" {
-							<div class="backdrop-blur-md bg-white/10 p-6 rounded-2xl border border-white/20">
+							<div class="backdrop-blur-md bg-white/10 p-6 rounded-2xl border border-white/20 w-full lg:w-2/3 h-full">
 								<h3 class="text-lg font-semibold text-white mb-3 tracking-wide">Notas</h3>
 								<p class="text-white/90 leading-relaxed tracking-wide">{record.Notas.String}</p>
 							</div>
 						}
 
 						<!-- Action Buttons -->
-						<div class="flex flex-col sm:flex-row gap-4 pt-6">
+						<div class="flex flex-col sm:flex-row gap-4 pt-6 w-full lg:w-2/3 lg:h-[60px] justify-end">
 							<button class="btn-primary text-lg px-8 py-4 inline-flex items-center justify-center group backdrop-blur-md tracking-wide">
 								<svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
 									<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z"/>

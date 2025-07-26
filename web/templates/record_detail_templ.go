@@ -73,14 +73,14 @@ func RecordDetail(record *models.Record) templ.Component {
 			if templ_7745c5c3_Err != nil {
 				return templ_7745c5c3_Err
 			}
-			templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 3, "\" class=\"w-full h-full object-cover\"><div class=\"absolute inset-0 bg-black/40 backdrop-blur-sm\"></div></div><!-- Content with Glassmorphism --><div class=\"relative z-10 min-h-screen\"><div class=\"max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8\"><!-- Back Button --><div class=\"mb-8\"><a href=\"/records\" class=\"inline-flex items-center text-white hover:text-primary-red transition-colors backdrop-blur-md bg-white/10 px-4 py-2 rounded-full tracking-wide\"><svg class=\"w-5 h-5 mr-2\" fill=\"none\" stroke=\"currentColor\" viewBox=\"0 0 24 24\"><path stroke-linecap=\"round\" stroke-linejoin=\"round\" stroke-width=\"2\" d=\"M10 19l-7-7m0 0l7-7m-7 7h18\"></path></svg> Volver al catálogo</a></div><!-- Main Content --><div class=\"grid lg:grid-cols-2 gap-12\"><!-- Left Column - Vinyl Record --><div class=\"flex justify-center lg:justify-start\"><div class=\"relative\"><div class=\"w-80 h-80 vinyl-card relative overflow-hidden backdrop-blur-md bg-white/20 border border-white/30\"><img src=\"")
+			templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 3, "\" class=\"w-full h-full object-cover\"><div class=\"absolute inset-0 bg-black/60 backdrop-blur-sm\"></div></div><!-- Content with Glassmorphism --><div class=\"relative z-10 min-h-screen\"><div class=\"max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8\"><!-- Back Button --><div class=\"mb-8\"><a href=\"/records\" class=\"inline-flex items-center text-white hover:text-primary-red transition-colors backdrop-blur-md bg-white/10 px-4 py-2 rounded-full tracking-wide\"><svg class=\"w-5 h-5 mr-2\" fill=\"none\" stroke=\"currentColor\" viewBox=\"0 0 24 24\"><path stroke-linecap=\"round\" stroke-linejoin=\"round\" stroke-width=\"2\" d=\"M10 19l-7-7m0 0l7-7m-7 7h18\"></path></svg> Volver al catálogo</a></div><!-- Main Content Container --><div class=\"flex flex-col gap-8 lg:gap-12 justify-between\"><!-- First Row --><div class=\"flex flex-col lg:flex-row gap-16\"><!-- Vinyl Record --><div class=\"flex justify-center lg:justify-start w-full lg:w-1/3\"><div class=\"relative w-full\"><div class=\"w-80 h-80 vinyl-card relative overflow-hidden backdrop-blur-md bg-white/20 border border-white/30 mx-auto\"><img src=\"")
 			if templ_7745c5c3_Err != nil {
 				return templ_7745c5c3_Err
 			}
 			var templ_7745c5c3_Var5 string
 			templ_7745c5c3_Var5, templ_7745c5c3_Err = templ.JoinStringErrs(record.GetArtworkURL())
 			if templ_7745c5c3_Err != nil {
-				return templ.Error{Err: templ_7745c5c3_Err, FileName: `web/templates/record_detail.templ`, Line: 42, Col: 36}
+				return templ.Error{Err: templ_7745c5c3_Err, FileName: `web/templates/record_detail.templ`, Line: 44, Col: 37}
 			}
 			_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(templ_7745c5c3_Var5))
 			if templ_7745c5c3_Err != nil {
@@ -93,13 +93,13 @@ func RecordDetail(record *models.Record) templ.Component {
 			var templ_7745c5c3_Var6 string
 			templ_7745c5c3_Var6, templ_7745c5c3_Err = templ.JoinStringErrs(record.GetDisplayTitle())
 			if templ_7745c5c3_Err != nil {
-				return templ.Error{Err: templ_7745c5c3_Err, FileName: `web/templates/record_detail.templ`, Line: 43, Col: 38}
+				return templ.Error{Err: templ_7745c5c3_Err, FileName: `web/templates/record_detail.templ`, Line: 45, Col: 39}
 			}
 			_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(templ_7745c5c3_Var6))
 			if templ_7745c5c3_Err != nil {
 				return templ_7745c5c3_Err
 			}
-			templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 5, "\" class=\"w-full h-full object-cover rounded-full\"><!-- Play button overlay --><div class=\"absolute inset-0 flex items-center justify-center opacity-0 hover:opacity-100 transition-opacity\"><button class=\"w-20 h-20 bg-gradient-to-br from-primary-red to-primary-orange rounded-full flex items-center justify-center shadow-lg hover:scale-110 transition-transform\"><svg class=\"w-8 h-8 text-white ml-1\" fill=\"currentColor\" viewBox=\"0 0 24 24\"><path d=\"M8 5v14l11-7z\"></path></svg></button></div></div><!-- Price tag --><div class=\"absolute -top-4 -right-4 bg-gradient-to-r from-primary-red to-primary-orange text-white px-4 py-2 rounded-full shadow-lg backdrop-blur-md\"><span class=\"text-xl font-bold tracking-wide\">$25</span></div></div></div><!-- Right Column - Details --><div class=\"space-y-8\"><!-- Title and Artist --><div class=\"backdrop-blur-md bg-white/10 p-8 rounded-2xl border border-white/20\"><h1 class=\"text-4xl md:text-5xl font-display font-bold text-white mb-4 tracking-tight\">")
+			templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 5, "\" class=\"w-full h-full object-cover rounded-full\"><!-- Play button overlay --><div class=\"absolute inset-0 flex items-center justify-center opacity-0 hover:opacity-100 transition-opacity\"><button class=\"w-20 h-20 bg-gradient-to-br from-primary-red to-primary-orange rounded-full flex items-center justify-center shadow-lg hover:scale-110 transition-transform\"><svg class=\"w-8 h-8 text-white ml-1\" fill=\"currentColor\" viewBox=\"0 0 24 24\"><path d=\"M8 5v14l11-7z\"></path></svg></button></div></div><!-- Price tag --><div class=\"absolute -top-4 -right-4 bg-gradient-to-r from-primary-red to-primary-orange text-white px-4 py-2 rounded-full shadow-lg backdrop-blur-md\"><span class=\"text-xl font-bold tracking-wide\">$25</span></div></div></div><!-- Title and Artist --><div class=\"backdrop-blur-md bg-white/10 p-8 rounded-2xl border border-white/20 w-full lg:w-2/3 h-full\"><h1 class=\"text-4xl md:text-5xl font-display font-bold text-white mb-4 tracking-tight\">")
 			if templ_7745c5c3_Err != nil {
 				return templ_7745c5c3_Err
 			}
@@ -148,7 +148,7 @@ func RecordDetail(record *models.Record) templ.Component {
 					return templ_7745c5c3_Err
 				}
 			}
-			templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 10, "</div><!-- Basic Info Grid --><div class=\"grid grid-cols-1 sm:grid-cols-2 gap-6\">")
+			templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 10, "</div></div><!-- Second Row --><div class=\"flex flex-col lg:flex-row gap-16\"><!-- Basic Info Grid --><div class=\"grid grid-cols-1 sm:grid-cols-2 gap-6 w-full lg:w-1/2\">")
 			if templ_7745c5c3_Err != nil {
 				return templ_7745c5c3_Err
 			}
@@ -160,7 +160,7 @@ func RecordDetail(record *models.Record) templ.Component {
 				var templ_7745c5c3_Var10 string
 				templ_7745c5c3_Var10, templ_7745c5c3_Err = templ.JoinStringErrs(record.Sello.String)
 				if templ_7745c5c3_Err != nil {
-					return templ.Error{Err: templ_7745c5c3_Err, FileName: `web/templates/record_detail.templ`, Line: 86, Col: 87}
+					return templ.Error{Err: templ_7745c5c3_Err, FileName: `web/templates/record_detail.templ`, Line: 89, Col: 87}
 				}
 				_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(templ_7745c5c3_Var10))
 				if templ_7745c5c3_Err != nil {
@@ -179,7 +179,7 @@ func RecordDetail(record *models.Record) templ.Component {
 				var templ_7745c5c3_Var11 string
 				templ_7745c5c3_Var11, templ_7745c5c3_Err = templ.JoinStringErrs(record.CatalogNumber.String)
 				if templ_7745c5c3_Err != nil {
-					return templ.Error{Err: templ_7745c5c3_Err, FileName: `web/templates/record_detail.templ`, Line: 93, Col: 95}
+					return templ.Error{Err: templ_7745c5c3_Err, FileName: `web/templates/record_detail.templ`, Line: 96, Col: 95}
 				}
 				_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(templ_7745c5c3_Var11))
 				if templ_7745c5c3_Err != nil {
@@ -198,7 +198,7 @@ func RecordDetail(record *models.Record) templ.Component {
 				var templ_7745c5c3_Var12 string
 				templ_7745c5c3_Var12, templ_7745c5c3_Err = templ.JoinStringErrs(record.Formato.String)
 				if templ_7745c5c3_Err != nil {
-					return templ.Error{Err: templ_7745c5c3_Err, FileName: `web/templates/record_detail.templ`, Line: 100, Col: 89}
+					return templ.Error{Err: templ_7745c5c3_Err, FileName: `web/templates/record_detail.templ`, Line: 103, Col: 89}
 				}
 				_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(templ_7745c5c3_Var12))
 				if templ_7745c5c3_Err != nil {
@@ -217,7 +217,7 @@ func RecordDetail(record *models.Record) templ.Component {
 				var templ_7745c5c3_Var13 string
 				templ_7745c5c3_Var13, templ_7745c5c3_Err = templ.JoinStringErrs(record.Pais.String)
 				if templ_7745c5c3_Err != nil {
-					return templ.Error{Err: templ_7745c5c3_Err, FileName: `web/templates/record_detail.templ`, Line: 107, Col: 86}
+					return templ.Error{Err: templ_7745c5c3_Err, FileName: `web/templates/record_detail.templ`, Line: 110, Col: 86}
 				}
 				_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(templ_7745c5c3_Var13))
 				if templ_7745c5c3_Err != nil {
@@ -236,7 +236,7 @@ func RecordDetail(record *models.Record) templ.Component {
 				var templ_7745c5c3_Var14 string
 				templ_7745c5c3_Var14, templ_7745c5c3_Err = templ.JoinStringErrs(record.Condicion.String)
 				if templ_7745c5c3_Err != nil {
-					return templ.Error{Err: templ_7745c5c3_Err, FileName: `web/templates/record_detail.templ`, Line: 114, Col: 91}
+					return templ.Error{Err: templ_7745c5c3_Err, FileName: `web/templates/record_detail.templ`, Line: 117, Col: 91}
 				}
 				_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(templ_7745c5c3_Var14))
 				if templ_7745c5c3_Err != nil {
@@ -255,7 +255,7 @@ func RecordDetail(record *models.Record) templ.Component {
 				var templ_7745c5c3_Var15 string
 				templ_7745c5c3_Var15, templ_7745c5c3_Err = templ.JoinStringErrs(record.DuracionTotal.String)
 				if templ_7745c5c3_Err != nil {
-					return templ.Error{Err: templ_7745c5c3_Err, FileName: `web/templates/record_detail.templ`, Line: 121, Col: 95}
+					return templ.Error{Err: templ_7745c5c3_Err, FileName: `web/templates/record_detail.templ`, Line: 124, Col: 95}
 				}
 				_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(templ_7745c5c3_Var15))
 				if templ_7745c5c3_Err != nil {
@@ -271,7 +271,7 @@ func RecordDetail(record *models.Record) templ.Component {
 				return templ_7745c5c3_Err
 			}
 			if len(record.GetGenerosAsSlice()) > 0 || len(record.GetEstilosAsSlice()) > 0 {
-				templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 24, "<div class=\"space-y-6\">")
+				templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 24, "<div class=\"space-y-6 w-full lg:w-1/2\">")
 				if templ_7745c5c3_Err != nil {
 					return templ_7745c5c3_Err
 				}
@@ -288,7 +288,7 @@ func RecordDetail(record *models.Record) templ.Component {
 						var templ_7745c5c3_Var16 string
 						templ_7745c5c3_Var16, templ_7745c5c3_Err = templ.JoinStringErrs(genero)
 						if templ_7745c5c3_Err != nil {
-							return templ.Error{Err: templ_7745c5c3_Err, FileName: `web/templates/record_detail.templ`, Line: 135, Col: 20}
+							return templ.Error{Err: templ_7745c5c3_Err, FileName: `web/templates/record_detail.templ`, Line: 138, Col: 20}
 						}
 						_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(templ_7745c5c3_Var16))
 						if templ_7745c5c3_Err != nil {
@@ -317,7 +317,7 @@ func RecordDetail(record *models.Record) templ.Component {
 						var templ_7745c5c3_Var17 string
 						templ_7745c5c3_Var17, templ_7745c5c3_Err = templ.JoinStringErrs(estilo)
 						if templ_7745c5c3_Err != nil {
-							return templ.Error{Err: templ_7745c5c3_Err, FileName: `web/templates/record_detail.templ`, Line: 148, Col: 20}
+							return templ.Error{Err: templ_7745c5c3_Err, FileName: `web/templates/record_detail.templ`, Line: 151, Col: 20}
 						}
 						_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(templ_7745c5c3_Var17))
 						if templ_7745c5c3_Err != nil {
@@ -338,19 +338,19 @@ func RecordDetail(record *models.Record) templ.Component {
 					return templ_7745c5c3_Err
 				}
 			}
-			templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 34, "<!-- Notes -->")
+			templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 34, "</div><!-- Third Row --><div class=\"flex flex-col lg:flex-row gap-16\"><!-- Notes -->")
 			if templ_7745c5c3_Err != nil {
 				return templ_7745c5c3_Err
 			}
 			if record.Notas.Valid && record.Notas.String != "" {
-				templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 35, "<div class=\"backdrop-blur-md bg-white/10 p-6 rounded-2xl border border-white/20\"><h3 class=\"text-lg font-semibold text-white mb-3 tracking-wide\">Notas</h3><p class=\"text-white/90 leading-relaxed tracking-wide\">")
+				templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 35, "<div class=\"backdrop-blur-md bg-white/10 p-6 rounded-2xl border border-white/20 w-full lg:w-2/3 h-full\"><h3 class=\"text-lg font-semibold text-white mb-3 tracking-wide\">Notas</h3><p class=\"text-white/90 leading-relaxed tracking-wide\">")
 				if templ_7745c5c3_Err != nil {
 					return templ_7745c5c3_Err
 				}
 				var templ_7745c5c3_Var18 string
 				templ_7745c5c3_Var18, templ_7745c5c3_Err = templ.JoinStringErrs(record.Notas.String)
 				if templ_7745c5c3_Err != nil {
-					return templ.Error{Err: templ_7745c5c3_Err, FileName: `web/templates/record_detail.templ`, Line: 161, Col: 83}
+					return templ.Error{Err: templ_7745c5c3_Err, FileName: `web/templates/record_detail.templ`, Line: 167, Col: 83}
 				}
 				_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(templ_7745c5c3_Var18))
 				if templ_7745c5c3_Err != nil {
@@ -361,7 +361,7 @@ func RecordDetail(record *models.Record) templ.Component {
 					return templ_7745c5c3_Err
 				}
 			}
-			templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 37, "<!-- Action Buttons --><div class=\"flex flex-col sm:flex-row gap-4 pt-6\"><button class=\"btn-primary text-lg px-8 py-4 inline-flex items-center justify-center group backdrop-blur-md tracking-wide\"><svg class=\"w-5 h-5 mr-2\" fill=\"none\" stroke=\"currentColor\" viewBox=\"0 0 24 24\"><path stroke-linecap=\"round\" stroke-linejoin=\"round\" stroke-width=\"2\" d=\"M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z\"></path></svg> Agregar al carrito</button> <button class=\"px-8 py-4 bg-white/10 backdrop-blur-md border-2 border-white/30 rounded-full text-lg font-semibold text-white hover:bg-white/20 hover:border-white/50 transition-colors inline-flex items-center justify-center tracking-wide\"><svg class=\"w-5 h-5 mr-2\" fill=\"none\" stroke=\"currentColor\" viewBox=\"0 0 24 24\"><path stroke-linecap=\"round\" stroke-linejoin=\"round\" stroke-width=\"2\" d=\"M8.684 13.342C8.886 12.938 9 12.482 9 12c0-.482-.114-.938-.316-1.342m0 2.684a3 3 0 110-2.684m0 2.684l6.632 3.316m-6.632-6l6.632-3.316m0 0a3 3 0 105.367-2.684 3 3 0 00-5.367 2.684zm0 9.316a3 3 0 105.367 2.684 3 3 0 00-5.367-2.684z\"></path></svg> Compartir</button></div></div></div><!-- Tracklist -->")
+			templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 37, "<!-- Action Buttons --><div class=\"flex flex-col sm:flex-row gap-4 pt-6 w-full lg:w-2/3 lg:h-[60px] justify-end\"><button class=\"btn-primary text-lg px-8 py-4 inline-flex items-center justify-center group backdrop-blur-md tracking-wide\"><svg class=\"w-5 h-5 mr-2\" fill=\"none\" stroke=\"currentColor\" viewBox=\"0 0 24 24\"><path stroke-linecap=\"round\" stroke-linejoin=\"round\" stroke-width=\"2\" d=\"M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z\"></path></svg> Agregar al carrito</button> <button class=\"px-8 py-4 bg-white/10 backdrop-blur-md border-2 border-white/30 rounded-full text-lg font-semibold text-white hover:bg-white/20 hover:border-white/50 transition-colors inline-flex items-center justify-center tracking-wide\"><svg class=\"w-5 h-5 mr-2\" fill=\"none\" stroke=\"currentColor\" viewBox=\"0 0 24 24\"><path stroke-linecap=\"round\" stroke-linejoin=\"round\" stroke-width=\"2\" d=\"M8.684 13.342C8.886 12.938 9 12.482 9 12c0-.482-.114-.938-.316-1.342m0 2.684a3 3 0 110-2.684m0 2.684l6.632 3.316m-6.632-6l6.632-3.316m0 0a3 3 0 105.367-2.684 3 3 0 00-5.367 2.684zm0 9.316a3 3 0 105.367 2.684 3 3 0 00-5.367-2.684z\"></path></svg> Compartir</button></div></div></div><!-- Tracklist -->")
 			if templ_7745c5c3_Err != nil {
 				return templ_7745c5c3_Err
 			}
@@ -378,7 +378,7 @@ func RecordDetail(record *models.Record) templ.Component {
 					var templ_7745c5c3_Var19 string
 					templ_7745c5c3_Var19, templ_7745c5c3_Err = templ.JoinStringErrs(fmt.Sprintf("%d", track.Numero))
 					if templ_7745c5c3_Err != nil {
-						return templ.Error{Err: templ_7745c5c3_Err, FileName: `web/templates/record_detail.templ`, Line: 195, Col: 45}
+						return templ.Error{Err: templ_7745c5c3_Err, FileName: `web/templates/record_detail.templ`, Line: 201, Col: 45}
 					}
 					_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(templ_7745c5c3_Var19))
 					if templ_7745c5c3_Err != nil {
@@ -391,7 +391,7 @@ func RecordDetail(record *models.Record) templ.Component {
 					var templ_7745c5c3_Var20 string
 					templ_7745c5c3_Var20, templ_7745c5c3_Err = templ.JoinStringErrs(track.Titulo)
 					if templ_7745c5c3_Err != nil {
-						return templ.Error{Err: templ_7745c5c3_Err, FileName: `web/templates/record_detail.templ`, Line: 198, Col: 26}
+						return templ.Error{Err: templ_7745c5c3_Err, FileName: `web/templates/record_detail.templ`, Line: 204, Col: 26}
 					}
 					_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(templ_7745c5c3_Var20))
 					if templ_7745c5c3_Err != nil {
@@ -409,7 +409,7 @@ func RecordDetail(record *models.Record) templ.Component {
 						var templ_7745c5c3_Var21 string
 						templ_7745c5c3_Var21, templ_7745c5c3_Err = templ.JoinStringErrs(track.Duracion)
 						if templ_7745c5c3_Err != nil {
-							return templ.Error{Err: templ_7745c5c3_Err, FileName: `web/templates/record_detail.templ`, Line: 203, Col: 28}
+							return templ.Error{Err: templ_7745c5c3_Err, FileName: `web/templates/record_detail.templ`, Line: 209, Col: 28}
 						}
 						_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(templ_7745c5c3_Var21))
 						if templ_7745c5c3_Err != nil {
@@ -437,7 +437,7 @@ func RecordDetail(record *models.Record) templ.Component {
 			var templ_7745c5c3_Var22 string
 			templ_7745c5c3_Var22, templ_7745c5c3_Err = templ.JoinStringErrs(record.CreatedAt.Format("02/01/2006"))
 			if templ_7745c5c3_Err != nil {
-				return templ.Error{Err: templ_7745c5c3_Err, FileName: `web/templates/record_detail.templ`, Line: 217, Col: 82}
+				return templ.Error{Err: templ_7745c5c3_Err, FileName: `web/templates/record_detail.templ`, Line: 223, Col: 82}
 			}
 			_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(templ_7745c5c3_Var22))
 			if templ_7745c5c3_Err != nil {
@@ -455,7 +455,7 @@ func RecordDetail(record *models.Record) templ.Component {
 				var templ_7745c5c3_Var23 string
 				templ_7745c5c3_Var23, templ_7745c5c3_Err = templ.JoinStringErrs(record.UpdatedAt.Format("02/01/2006"))
 				if templ_7745c5c3_Err != nil {
-					return templ.Error{Err: templ_7745c5c3_Err, FileName: `web/templates/record_detail.templ`, Line: 219, Col: 86}
+					return templ.Error{Err: templ_7745c5c3_Err, FileName: `web/templates/record_detail.templ`, Line: 225, Col: 86}
 				}
 				_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(templ_7745c5c3_Var23))
 				if templ_7745c5c3_Err != nil {
